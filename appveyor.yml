@@ -25,7 +25,7 @@ install:
     - if "%PlatformToolset%"=="VS15" call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" %archi%
     - if "%PlatformToolset%"=="VS17" call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat" %archi%
     #package restoring
-    - nuget restore "%APPVEYOR_BUILD_FOLDER%"\MyNppPlugin1\packages.config -PackagesDirectory "%APPVEYOR_BUILD_FOLDER%"\packages
+    #- nuget restore "%APPVEYOR_BUILD_FOLDER%"\MyNppPlugin1\packages.config -PackagesDirectory "%APPVEYOR_BUILD_FOLDER%"\packages
 
 build_script:
     - cd "%APPVEYOR_BUILD_FOLDER%"
