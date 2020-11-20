@@ -4,16 +4,16 @@ image: Visual Studio 2017
 
 environment:
   matrix:
-    - PlatformToolset: VS15
+#    - PlatformToolset: VS15
     - PlatformToolset: VS17
 
 platform:
     - x64
-    - Any CPU
+#    - Any CPU
 
 configuration:
     - Release
-    - Debug
+#    - Debug
 
 install:
     - if "%platform%"=="x64" set archi=amd64
