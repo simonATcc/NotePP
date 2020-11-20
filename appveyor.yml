@@ -36,7 +36,7 @@ after_build:
     - ps: >-
 
         if ($env:PLATFORM_INPUT -eq "x64") {
-            Push-AppveyorArtifact "MyNppPlugin1\bin\$env:PLATFORM_INPUT\$env:CONFIGURATION\MyNppPlugin1.dll" -FileName MyNppPlugin1.dll
+            Push-AppveyorArtifact "MyNppPlugin1\bin\$env:CONFIGURATION-$env:PLATFORM_INPUT\MyNppPlugin1.dll" -FileName MyNppPlugin1.dll
         }
 
         if ($env:PLATFORM_INPUT -eq "Any CPU" ) {
@@ -46,7 +46,7 @@ after_build:
         if ($($env:APPVEYOR_REPO_TAG) -eq "true" -and $env:CONFIGURATION -eq "Release" -and $env:PLATFORMTOOLSET -eq "VS17") {
             if($env:PLATFORM_INPUT -eq "x64"){
             $ZipFileName = "MyNppPlugin1_$($env:APPVEYOR_REPO_TAG_NAME)_x64.zip"
-            7z a $ZipFileName "%APPVEYOR_BUILD_FOLDER%\MyNppPlugin1\bin\$env:PLATFORM_INPUT\$env:CONFIGURATION\MyNppPlugin1.dll"
+            7z a $ZipFileName "%APPVEYOR_BUILD_FOLDER%\MyNppPlugin1\bin\$env:CONFIGURATION-$env:PLATFORM_INPUT\MyNppPlugin1.dll"
             }
             if($env:PLATFORM_INPUT -eq "Any CPU"){
             $ZipFileName = "MyNppPlugin1_$($env:APPVEYOR_REPO_TAG_NAME)_x86.zip"
