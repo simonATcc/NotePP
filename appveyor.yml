@@ -25,37 +25,37 @@ install:
     - if "%PlatformToolset%"=="VS15" call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" %archi%
     - if "%PlatformToolset%"=="VS17" call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat" %archi%
     #package restoring
-    - nuget restore "%APPVEYOR_BUILD_FOLDER%"\FirstUpper\packages.config -PackagesDirectory "%APPVEYOR_BUILD_FOLDER%"\packages
+    - nuget restore "%APPVEYOR_BUILD_FOLDER%"\MyNppPlugin1\packages.config -PackagesDirectory "%APPVEYOR_BUILD_FOLDER%"\packages
 
 build_script:
     - cd "%APPVEYOR_BUILD_FOLDER%"
-    - msbuild FirstUpper.sln /m /p:configuration="%configuration%" /p:platform="%platform_input%" /p:PlatformToolset="%PlatformToolset%" /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
+    - msbuild MyNppPlugin1.sln /m /p:configuration="%configuration%" /p:platform="%platform_input%" /p:PlatformToolset="%PlatformToolset%" /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
 
 after_build:
     - cd "%APPVEYOR_BUILD_FOLDER%"
     - ps: >-
 
         if ($env:PLATFORM_INPUT -eq "x64") {
-            Push-AppveyorArtifact "FirstUpper\bin\$env:PLATFORM_INPUT\$env:CONFIGURATION\FirstUpper.dll" -FileName FirstUpper.dll
+            Push-AppveyorArtifact "MyNppPlugin1\bin\$env:PLATFORM_INPUT\$env:CONFIGURATION\MyNppPlugin1.dll" -FileName MyNppPlugin1.dll
         }
 
         if ($env:PLATFORM_INPUT -eq "Any CPU" ) {
-            Push-AppveyorArtifact "FirstUpper\bin\$env:CONFIGURATION\FirstUpper.dll" -FileName FirstUpper.dll
+            Push-AppveyorArtifact "MyNppPlugin1\bin\$env:CONFIGURATION\MyNppPlugin1.dll" -FileName MyNppPlugin1.dll
         }
 
         if ($($env:APPVEYOR_REPO_TAG) -eq "true" -and $env:CONFIGURATION -eq "Release" -and $env:PLATFORMTOOLSET -eq "VS17") {
             if($env:PLATFORM_INPUT -eq "x64"){
-            $ZipFileName = "FirstUpper_$($env:APPVEYOR_REPO_TAG_NAME)_x64.zip"
-            7z a $ZipFileName "%APPVEYOR_BUILD_FOLDER%\FirstUpper\bin\$env:PLATFORM_INPUT\$env:CONFIGURATION\FirstUpper.dll"
+            $ZipFileName = "MyNppPlugin1_$($env:APPVEYOR_REPO_TAG_NAME)_x64.zip"
+            7z a $ZipFileName "%APPVEYOR_BUILD_FOLDER%\MyNppPlugin1\bin\$env:PLATFORM_INPUT\$env:CONFIGURATION\MyNppPlugin1.dll"
             }
             if($env:PLATFORM_INPUT -eq "Any CPU"){
-            $ZipFileName = "FirstUpper_$($env:APPVEYOR_REPO_TAG_NAME)_x86.zip"
-            7z a $ZipFileName "%APPVEYOR_BUILD_FOLDER%\FirstUpper\bin\$env:CONFIGURATION\FirstUpper.dll"
+            $ZipFileName = "MyNppPlugin1_$($env:APPVEYOR_REPO_TAG_NAME)_x86.zip"
+            7z a $ZipFileName "%APPVEYOR_BUILD_FOLDER%\MyNppPlugin1\bin\$env:CONFIGURATION\MyNppPlugin1.dll"
             }
         }
 
 artifacts:
-  - path: FirstUpper_*.zip
+  - path: MyNppPlugin1_*.zip
     name: releases
 
 deploy:

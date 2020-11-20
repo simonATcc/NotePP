@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProjectGuid>{c29ccacb-2095-482f-8150-f73ab736bd00}</ProjectGuid>
+    <ProjectGuid>{C29CCACB-2095-482F-8150-F73AB736BD00}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MyNppPlugin1</RootNamespace>
