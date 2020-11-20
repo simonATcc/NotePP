@@ -42,7 +42,7 @@ after_build:
         if ($($env:APPVEYOR_REPO_TAG) -eq "true" -and $env:CONFIGURATION -eq "Release" -and $env:PLATFORMTOOLSET -eq "VS17") {
             if($env:PLATFORM_INPUT -eq "x64"){
             $ZipFileName = "MyNppPlugin1_x64.zip"
-            7z a $ZipFileName "%APPVEYOR_BUILD_FOLDER%\MyNppPlugin1\bin\$env:CONFIGURATION-$env:PLATFORM_INPUT\MyNppPlugin1.dll"
+            7z a $ZipFileName "%APPVEYOR_BUILD_FOLDER%\MyNppPlugin1\bin\Release-x64\MyNppPlugin1.dll"
             }
         }
 
